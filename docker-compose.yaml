@@ -3,7 +3,7 @@ version: '3.8'
 services:
   backend:
     image: ecommerce_tcc:devel
-    command: poetry run uvicorn ecommerce_tcc.api:app --host 0.0.0.0 --port 8000
+    command: poetry run uvicorn ecommerce_tcc.entrypoints.api:app --host 0.0.0.0 --port 8000
     ports:
       - 8000:8000
     depends_on:

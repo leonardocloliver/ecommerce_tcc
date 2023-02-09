@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir --upgrade poetry
 RUN poetry install --without dev
 
 # 
-CMD ["poetry", "run", "uvicorn", "ecommerce_tcc.api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["poetry", "run", "uvicorn", "ecommerce_tcc.entrypoints.api:app", "--host", "0.0.0.0", "--port", "8000"]

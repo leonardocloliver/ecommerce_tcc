@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 
-@dataclass(frozen=True)
+@dataclass()
 class Product:
-    _id: str
     name: str
     desc: str
     photo: str
