@@ -1,12 +1,17 @@
 version: '3.8'
 
 services:
-# TODO: ADICIONAR CONFIGURACAO DO POSTGRE COMO ENV VAR
   backend:
     image: ecommerce_tcc:devel
     command: poetry run uvicorn ecommerce_tcc.entrypoints.api:app --host 0.0.0.0 --port 8000
     ports:
       - 8000:8000
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=ecommerce 
+      - POSTGRES_PORT=5432
+      - POSTGRE_HOST=db
     depends_on:
       - db
 

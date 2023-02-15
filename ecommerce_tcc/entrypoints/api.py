@@ -5,23 +5,15 @@ from sqlalchemy.orm import sessionmaker
 from ecommerce_tcc.adapters import orm
 from ecommerce_tcc.adapters.product_repository import ProductRepository
 from ecommerce_tcc.services.warehouse import Warehouse
+from ecommerce_tcc.domain.product import Product
+from .config import get_postgres_uri
 
-
-# TODO : IMPLEMENTAR CONFIGURACAO
-def get_postgres_uri():
-    host = "db"
-    port = 5432 
-    password = "admin"
-    user, db_name = "admin", "ecommerce"
-    return f"postgresql://{user}:{password}@{host}:{port}/{db_name}"
 
 orm.start_mappers()
 get_session = sessionmaker(bind=create_engine(get_postgres_uri()))
 app = _fastapi.FastAPI()
 
 
-from ecommerce_tcc.domain.product import Product
-    
 # TODO: SUBSTITUIR REQUEST GENERICO COM PYDANTIC
 @app.post("/v1/api/products/")
 async def create_product(request : Request):
