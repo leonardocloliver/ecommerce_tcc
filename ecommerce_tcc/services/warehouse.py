@@ -11,25 +11,15 @@ class Warehouse:
         else:    
             raise InvalidProductException("Product is invalid because negative quantity")
         
-    def get_product(self, _id):
-        product = self.repository.get(_id)
+    def get_product(self, product_id):
+        product = self.repository.get(product_id)
         if not product:
             raise ProductDoesNotExistExcpetion("Product does not exist")
-    
-    # TODO : ATUALIZAR COM O PRODUCT REPOSITORY
-    # def update_product(self, updated_product: Product):
-    #     found = False
-    #     for index, product in enumerate(self.stock):
-    #         if product._id == updated_product._id:
-    #            self.stock[index] = updated_product
-    #            found = True
-    #     if not found:
-    #         raise ProductDoesNotExistExcpetion("Product does not exist")
+        return product
 
-    
-    # TODO : DELETAR COM PRODUCT REPOSITORY
-    # def delete_product(self, delete_product):
-    #     self.stock.remove(delete_product)
+    def delete_product(self, product_id):
+        product = self.get_product(product_id)
+        self.repository.delete(product)
         
     def get_all_products(self):
         return self.repository.list()

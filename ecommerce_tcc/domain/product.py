@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass()
 class Product:
-    name: str
+    sku: str
     desc: str
     photo: str
     available_qty: int

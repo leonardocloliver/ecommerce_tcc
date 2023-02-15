@@ -8,7 +8,7 @@ metadata = MetaData()
 product = Table(
     'product', metadata,
     Column("id", Integer, primary_key=True, autoincrement=True),
-    Column("name", String(255)),
+    Column("sku", String(255)),
     Column("desc", String(255)),
     Column("photo", String(255)),
     Column("available_qty", Integer),
