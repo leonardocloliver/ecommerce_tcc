@@ -54,5 +54,5 @@ async def get_all_products():
     session = get_session()
     repo = ProductRepository(session)
     warehouse = Warehouse(repo)
-    products = warehouse.get_all_product()
+    products = warehouse.get_all_products()
     return products

@@ -8,8 +8,8 @@ class ProductRepository:
         self.session.add(product)
         self.session.commit()
     
-    def get(self, reference):
-        return self.session.query(Product).filter_by(reference=reference).one()
+    def get(self, product_id):
+        return self.session.query(Product).filter_by(id=product_id).one()
     
     def list(self):
         return self.session.query(Product).all()
