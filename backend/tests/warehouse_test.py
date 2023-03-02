@@ -4,7 +4,6 @@ from unittest.mock import Mock
 from ecommerce_tcc.services.warehouse import Warehouse
 from ecommerce_tcc.domain.exceptions import InvalidProductException, ProductDoesNotExistExcpetion
 
-# TODO: CONSERTAR TESTES QUEBRADOS
 
 def test_add_new_product_to_warehouse():
   #arrange 
