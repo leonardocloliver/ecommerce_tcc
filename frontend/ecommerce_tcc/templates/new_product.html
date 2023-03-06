@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="vh-100" style="background-color: #bcbcbc;">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-9">
+      
+              <h1 class="text-black mb-4">Register new product</h1>
+      
+              <div class="card" style="border-radius: 15px;">
+                <div class="card-body">
+                  
+                <form method="post">  
+
+                  <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">SKU</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input type="text" name="sku" class="form-control form-control-lg"/>
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Description</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                        <textarea class="form-control" name="description" rows="3" placeholder="Description"></textarea>
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Quantity</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+                      <input type="text" name="quantity" class="form-control form-control-lg" placeholder="120"/>
+                    </div>
+                  </div>
+
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Price</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                        <input type="text" name="price" class="form-control form-control-lg" placeholder="253.33"/>
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+      
+                  <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+      
+                      <h6 class="mb-0">Upload photo</h6>
+      
+                    </div>
+                    <div class="col-md-9 pe-5">
+      
+                      <input class="form-control form-control-lg" name="photo" id="formFileLg" type="file"/>
+                      <div class="small text-muted mt-2">Upload product photo</div>
+      
+                    </div>
+                  </div>
+      
+                  <hr class="mx-n3">
+      
+                  <div class="px-5 py-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                  </div>
+                </form>  
+                </div>
+              </div>
+      
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+{% endblock %} 
+
