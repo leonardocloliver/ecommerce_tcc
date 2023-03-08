@@ -5,7 +5,6 @@ from sqlalchemy.orm import sessionmaker
 from ecommerce_tcc.adapters import orm
 from ecommerce_tcc.adapters.product_repository import ProductRepository
 from ecommerce_tcc.services.warehouse import Warehouse
-from ecommerce_tcc.domain.product import Product
 from .config import get_postgres_uri
 
 
@@ -20,8 +19,7 @@ async def create_product(request : Request):
     session = get_session()
     repo = ProductRepository(session)
     warehouse = Warehouse(repo)
-    response = await request.json()
-    product = Product(sku=response["sku"], desc=response["desc"], photo=response["photo"], available_qty=response["available_qty"], price=response["price"])
+    product = await request.json()
     warehouse.add_new_product(product)
     return "OK", 201
 

@@ -7,7 +7,7 @@ metadata = MetaData()
 
 product = Table(
     'product', metadata,
-    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("uuid", Integer, primary_key=True),
     Column("sku", String(255)),
     Column("desc", String(255)),
     Column("photo", String(255)),

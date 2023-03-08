@@ -9,7 +9,7 @@ class ProductRepository:
         self.session.commit()
     
     def get(self, product_id):
-        return self.session.query(Product).filter_by(id=product_id).one()
+        return self.session.query(Product).filter_by(uuid=product_id).one()
     
     def list(self):
         return self.session.query(Product).all()

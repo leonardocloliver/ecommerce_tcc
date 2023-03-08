@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frontend:
     image: ecommerce_frontend:devel 
-    command: poetry run gunicorn ecommerce_tcc.app:app --bind 0.0.0.0:5000
+    command: poetry run gunicorn ecommerce_tcc.app:app --bind 0.0.0.0:5000 
     ports:
       - 5000:5000
     environment:
@@ -14,7 +14,7 @@ services:
       - backend
 
   backend:
-    image: ecommerce_tcc:devel
+    image: ecommerce_backend:devel
     command: poetry run uvicorn ecommerce_tcc.entrypoints.api:app --host 0.0.0.0 --port 8000
     ports:
       - 8000:8000

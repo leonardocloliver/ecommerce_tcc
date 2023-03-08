@@ -12,7 +12,7 @@ def homepage():
     catalog = response.json()
     return render_template('homepage.html', catalog=catalog)
 
-@app.route('/warehouse')
+@app.route('/warehouse', methods=['GET'])
 def warehouse():
     response = requests.get(BACKEND_URL + "/v1/api/products/")
     catalog = response.json()
@@ -23,7 +23,7 @@ def cart():
     return render_template('cart.html')
 
 # TO DO: VALIDAR O ERRO
-@app.route('/product', methods=('GET', 'POST'))
+@app.route('/product', methods=['GET', 'POST'])
 def product():
     if request.method == 'GET':
         return render_template('new_product.html')
@@ -37,7 +37,7 @@ def product():
         response = requests.post(BACKEND_URL + "/v1/api/products/", json=new_product)
         return redirect(url_for('warehouse'))
 
-@app.route('/product/<int:pid>', methods=('DELETE',))
+@app.route('/delete_product/<pid>', methods=['GET'])
 def delete_product(pid):
     response = requests.delete(BACKEND_URL + f"/v1/api/products/{pid}")
     return redirect(url_for('warehouse'))
