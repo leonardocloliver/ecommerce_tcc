@@ -10,7 +10,7 @@ packages = [{include = "ecommerce_tcc"}]
 python = "^3.10"
 fastapi = "^0.89.1"
 uvicorn = "^0.20.0"
-sqlalchemy = "^1.4.46"
+sqlalchemy = ">2.0.0"
 redis = "^4.4.2"
 postgres = "^4.0"
 alembic = "^1.9.2"

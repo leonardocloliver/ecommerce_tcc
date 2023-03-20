@@ -7,9 +7,9 @@ services:
     ports:
       - 5000:5000
     environment:
-      - FLASK_APP=app
-      - FLASK_ENV=development
-      - BACKEND_URL=http://backend:8000
+      - FLASK_APP=$FLASK_APP
+      - FLASK_ENV=$FLASK_ENV
+      - BACKEND_URL=$BACKEND_URL
     depends_on:
       - backend
 
@@ -19,11 +19,21 @@ services:
     ports:
       - 8000:8000
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=ecommerce 
-      - POSTGRES_PORT=5432
-      - POSTGRE_HOST=db
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB
+      - POSTGRES_PORT=$POSTGRES_PORT
+      - POSTGRE_HOST=$POSTGRE_HOST
+    depends_on:
+      - db_migration
+
+  db_migration:
+    image: ecommerce_backend:devel
+    command: poetry run alembic upgrade head
+    environment:
+      - DATABASE_URL=$DATABASE_URL
+    volumes:
+      - ./backend/alembic/versions:/code/alembic/versions
     depends_on:
       - db
 
@@ -36,9 +46,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=ecommerce 
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB
 
 volumes:
   postgres_data: 

@@ -2,25 +2,22 @@ import fastapi as _fastapi
 from fastapi import Request
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from ecommerce_tcc.adapters import orm
 from ecommerce_tcc.adapters.product_repository import ProductRepository
 from ecommerce_tcc.services.warehouse import Warehouse
 from .config import get_postgres_uri
+from .schema import Product
 
 
-orm.start_mappers()
 get_session = sessionmaker(bind=create_engine(get_postgres_uri()))
 app = _fastapi.FastAPI()
 
 
-# TODO: SUBSTITUIR REQUEST GENERICO COM PYDANTIC
 @app.post("/v1/api/products/")
-async def create_product(request : Request):
+async def create_product(product: Product):
     session = get_session()
     repo = ProductRepository(session)
     warehouse = Warehouse(repo)
-    product = await request.json()
-    warehouse.add_new_product(product)
+    warehouse.add_new_product(product.dict())
     return "OK", 201
 
 @app.delete("/v1/api/products/{product_id}")

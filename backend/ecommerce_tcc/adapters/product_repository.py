@@ -1,4 +1,4 @@
-from ecommerce_tcc.domain.product import Product
+from .models import Product
 
 class ProductRepository:
     def __init__(self, session):

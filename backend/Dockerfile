@@ -9,6 +9,9 @@ ADD ./poetry.lock /code/poetry.lock
 ADD ./ecommerce_tcc /code/ecommerce_tcc
 ADD ./README.md /code/README.md
 
+ADD ./alembic /code/alembic
+ADD ./alembic.ini /code/alembic.ini
+
 # 
 RUN pip install --no-cache-dir --upgrade poetry
 RUN poetry install --without dev

@@ -1,5 +1,5 @@
 import uuid
-from ..domain.product import Product
+from ..adapters.models import Product
 from ..domain.exceptions import InvalidProductException, ProductDoesNotExistExcpetion
 
 class Warehouse:
