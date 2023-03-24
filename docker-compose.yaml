@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  frontend:
-    image: ecommerce_frontend:devel 
+  frontend_pub:
+    image: frontend_pub:devel 
     command: poetry run gunicorn ecommerce_tcc.app:app --bind 0.0.0.0:5000 
     ports:
       - 5000:5000
@@ -12,9 +12,21 @@ services:
       - BACKEND_URL=$BACKEND_URL
     depends_on:
       - backend
+  
+  frontend_admin:
+    image: frontend_admin:devel 
+    command: poetry run gunicorn ecommerce_tcc.app:app --bind 0.0.0.0:5001
+    ports:
+      - 5001:5001
+    environment:
+      - FLASK_APP=$FLASK_APP
+      - FLASK_ENV=$FLASK_ENV
+      - BACKEND_URL=$BACKEND_URL
+    depends_on:
+      - backend
 
   backend:
-    image: ecommerce_backend:devel
+    image: backend:devel
     command: poetry run uvicorn ecommerce_tcc.entrypoints.api:app --host 0.0.0.0 --port 8000
     ports:
       - 8000:8000
@@ -28,7 +40,7 @@ services:
       - db_migration
 
   db_migration:
-    image: ecommerce_backend:devel
+    image: backend:devel
     command: poetry run alembic upgrade head
     environment:
       - DATABASE_URL=$DATABASE_URL
