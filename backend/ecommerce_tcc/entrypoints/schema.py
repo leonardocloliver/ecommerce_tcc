@@ -1,6 +1,7 @@
-from pydantic import BaseModel 
+from pydantic import BaseModel
+# from typing import List
 
-class Product(BaseModel):
+class ProductCreateUpdate(BaseModel):
     sku: str
     desc: str
     photo: str
@@ -9,3 +10,21 @@ class Product(BaseModel):
 
     class Config:
         orm_model = True
+
+class Product(BaseModel):
+    uuid: str
+    sku: str
+    desc: str
+    photo: str
+    available_qty: int
+    price: str
+
+    class Config:
+        orm_model = True
+    
+    
+
+# class PaginatedProduct(BaseModel):
+#     # limit: int
+#     # offset: int 
+#     data: List[Product]

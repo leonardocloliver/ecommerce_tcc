@@ -27,6 +27,14 @@ class Warehouse:
         
     def get_all_products(self):
         return self.repository.list()
+    
+    def update_product(self, product_id, product):
+        product_to_update = Product(uuid=product_id, **product)
+        updated_product = self.repository.update(product_to_update)
+        return updated_product
+        
+        
+        
         
         
                 
