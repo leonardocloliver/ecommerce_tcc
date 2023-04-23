@@ -1,16 +1,41 @@
 import requests 
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, make_response
 from .config import get_backend_url
 
 
 app = Flask(__name__)
 BACKEND_URL = get_backend_url()
 
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if username == 'admin' and  password == 'password':
+            resp = make_response(redirect(url_for('warehouse')))
+            resp.set_cookie('username', username)
+            return resp
+        else:
+            error = "Credenciais invalidas. Tente novamente"
+            return render_template('login.html', error=error)
+    else:
+        return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    resp = make_response(redirect(url_for('login')))
+    resp.delete_cookie('username')
+    return resp
+
 @app.route('/')
 def warehouse():
-    response = requests.get(BACKEND_URL + "/v1/api/products/")
-    catalog = response.json()
-    return render_template('warehouse.html', catalog=catalog)
+    username = request.cookies.get('username')
+    if username:
+        response = requests.get(BACKEND_URL + "/v1/api/products/")
+        catalog = response.json()
+        return render_template('warehouse.html', catalog=catalog)
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/product', methods=['GET', 'POST'])
 def product():

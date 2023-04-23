@@ -3,7 +3,7 @@ version: '3.8'
 services:
   frontend_pub:
     image: frontend_pub:devel 
-    command: poetry run gunicorn ecommerce_tcc.app:app --bind 0.0.0.0:5000 
+    command: poetry run gunicorn ecommerce_tcc.app:app --bind 0.0.0.0:5000 --log-level debug
     ports:
       - 5000:5000
     environment:
@@ -15,7 +15,7 @@ services:
   
   frontend_admin:
     image: frontend_admin:devel 
-    command: poetry run gunicorn ecommerce_tcc.app:app --bind 0.0.0.0:5001
+    command: poetry run gunicorn ecommerce_tcc.app:app --bind 0.0.0.0:5001 --log-level debug
     ports:
       - 5001:5001
     environment:
