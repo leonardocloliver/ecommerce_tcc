@@ -71,5 +71,3 @@ def update_product(pid):
         update_product["price"] = request.form['price']
         response = requests.put(BACKEND_URL + f"/v1/api/products/{pid}", json=update_product)
         return redirect(url_for('warehouse'))
-        
-    
