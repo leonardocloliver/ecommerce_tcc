@@ -36,13 +36,10 @@
                 <td>{{ product.price }}</td>
                 <td>{{ product.available_qty }}</td>
                 <td>
-                  <button
-                    type="button"
-                    class="btn btn-link btn-rounded btn-sm fw-bold"
-                    data-mdb-ripple-color="dark"
-                    >
-                    Edit
-                  </button>
+                  <form action="{{ url_for('update_product', pid=product.uuid) }}">
+                    <button type="submit" class="btn btn-link btn-rounded btn-sm fw-bold">Edit</button>
+                  </form>
+
                   <form action="{{ url_for('delete_product', pid=product.uuid) }}">
                     <button type="submit" class="btn btn-link btn-rounded btn-sm fw-bold">Delete</button>
                   </form>

@@ -30,5 +30,21 @@ def product():
 def delete_product(pid):
     response = requests.delete(BACKEND_URL + f"/v1/api/products/{pid}")
     return redirect(url_for('warehouse'))
-    
+
+@app.route('/update_product/<pid>', methods=['GET', 'POST'])
+def update_product(pid):
+    if request.method == 'GET':
+        response = requests.get(BACKEND_URL + f"/v1/api/products/{pid}")
+        product = response.json()
+        return render_template('update_product.html', product=product)
+    elif request.method == 'POST':
+        update_product = {}
+        update_product["sku"] = request.form['sku']
+        update_product["desc"] = request.form['description']
+        update_product["photo"] = request.form['photo']
+        update_product["available_qty"] = int(request.form['quantity'])
+        update_product["price"] = request.form['price']
+        response = requests.put(BACKEND_URL + f"/v1/api/products/{pid}", json=update_product)
+        return redirect(url_for('warehouse'))
+        
     
